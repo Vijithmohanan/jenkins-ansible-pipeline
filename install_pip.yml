@@ -1,0 +1,17 @@
+- name: Install pip on EC2
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install pip for Python 3
+      package:
+        name: python3-pip
+        state: present
+
+    - name: Verify pip installation
+      command: pip3 --version
+      register: pip_version
+
+    - name: Show pip version
+      debug:
+        var: pip_version.stdout
+
