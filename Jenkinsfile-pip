@@ -1,0 +1,15 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Install pip on EC2') {
+      steps {
+        sh '''
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@<your-ec2-ip> \
+          'ansible-playbook ~/install_pip.yml'
+        '''
+      }
+    }
+  }
+}
+
