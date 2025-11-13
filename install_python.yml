@@ -1,0 +1,17 @@
+- name: Install Python on EC2
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install Python 3
+      yum:
+        name: python3
+        state: present
+
+    - name: Verify Python installation
+      command: python3 --version
+      register: python_version
+
+    - name: Show Python version
+      debug:
+        var: python_version.stdout
+
